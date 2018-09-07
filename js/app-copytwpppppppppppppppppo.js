@@ -4,32 +4,28 @@
 
 cardsCover = [...document.querySelectorAll('.card')];
 // cardsToPlay = document.querySelectorAll('.card>.fa');
-d = [...document.querySelectorAll('.card>.fa')];
+cardsToPlay = [...document.querySelectorAll('.card>.fa')];
+
+	u = shuffle(cardsToPlay);
+	for (i=0; i<= currentTarget.children.length; i++){cardsCover[i].appendChild(u[i]);}
+	// for (i=0; i<= currentTarget.children.length; i++){currentTarget.children[i].appendChild(u[i]);}
+
+//d = [...document.querySelectorAll('.card>.fa')];
 // cardsToPlay = document.querySelectorAll('.card>i');
 
 for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
 // for (item of cardsToPlay){let cardsToPlay=[]; cardsToPlay = item; };
 
+// currentTarget.children[0].replaceWith(currentTarget.children[15])
+// for (i=0; i<= currentTarget.children.length; i++){currentTarget.children[i].appendChild(u[i]); console.log(currentTarget.children[i]);}
+// currentTarget.replaceChild(cardsToPlay[1], currentTarget.children[15])
+// currentTarget.appendChild
+
+
+// currentTarget.children[11].appendChild(u[1]);currentTarget.children[12].appendChild(u[2])
+
 // console.log (cardsCover);
 
-	// shuffle(cardsCover);
-
-	// u = shuffle(cardsToPlay);
-
-
-
-
-// I have two issues, line 212 (setTimeout)and  below is the other one this is not iterating as intended. at it is my programme wont run because of the issue but if i comment out this for loop. it will run but no reshuffle is done.
-	u = shuffle(d);
-	for (i=0; i<= cardsCover.length; i++){(cardsCover[i].appendChild(u[i]));}
-
-
-
-// for (i=0; i<= currentTarget.children.length; i++){cardsCover[i].appendChild(u[i]);}
-	// for (i=0; i<= currentTarget.children.length; i++){currentTarget.children[i].appendChild(u[i]);}
-
-//d = [...document.querySelectorAll('.card>.fa')];
-// cardsToPlay = document.querySelectorAll('.card>i');
 
 
 	// console.log (cardsCover);
@@ -206,9 +202,6 @@ function unmatchCardCheck(event){
 
 	// setTimeout(unmatchCardCheck, 1000, 'event');
 
-
-
-//the second issue is here, the timing is not functionin as I intend. This suppose to delay the flip but it is not.
 	setTimeout(function() {unmatchCardCheck;}, 1000, "event");
 
 
