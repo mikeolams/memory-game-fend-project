@@ -1,13 +1,17 @@
 /*
  * Create a list that holds all of your cards
  */
-
+ // let origin = document.querySelector('.deck');
+// unendittedCards =document.querySelectorAll('.card');
 cardsCover = [...document.querySelectorAll('.card')];
+// cardsCover = [document.querySelectorAll('.card')];
 // cardsToPlay = document.querySelectorAll('.card>.fa');
 d = [...document.querySelectorAll('.card>.fa')];
 // cardsToPlay = document.querySelectorAll('.card>i');
 
-for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
+newCards();
+// for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
+// const origin =  document.querySelector('.deck');
 // for (item of cardsToPlay){let cardsToPlay=[]; cardsToPlay = item; };
 
 // console.log (cardsCover);
@@ -18,10 +22,13 @@ for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open
 
 
 
-
 // I have two issues, line 212 (setTimeout)and  below is the other one this is not iterating as intended. at it is my programme wont run because of the issue but if i comment out this for loop. it will run but no reshuffle is done.
 	u = shuffle(d);
-	for (i=0; i<= cardsCover.length; i++){(cardsCover[i].appendChild(u[i]));}
+	// for (i=0; i<= cardsCover.length; i++){(cardsCover[i].appendChild(u[i]));}
+	function newBoard(){
+		for (i=0; i<1;i++){
+			let currentTarget = document.querySelector('.deck');
+		currentTarget.children[0].appendChild(u[0]);currentTarget.children[1].appendChild(u[1]);currentTarget.children[2].appendChild(u[2]);currentTarget.children[3].appendChild(u[3]);currentTarget.children[4].appendChild(u[4]);currentTarget.children[5].appendChild(u[5]);currentTarget.children[6].appendChild(u[6]);currentTarget.children[7].appendChild(u[7]);currentTarget.children[8].appendChild(u[8]);currentTarget.children[9].appendChild(u[9]);currentTarget.children[10].appendChild(u[10]);currentTarget.children[11].appendChild(u[11]);currentTarget.children[12].appendChild(u[12]);currentTarget.children[13].appendChild(u[13]);currentTarget.children[14].appendChild(u[14]);currentTarget.children[15].appendChild(u[15])}}
 
 
 
@@ -85,7 +92,12 @@ function shuffle(array) {
 
 // let target = document.querySelectorAll('.card');
 var count =3 ;
- currentTarget = document.querySelector('.deck');
+ let currentTarget = document.querySelector('.deck');
+// const origin = currentTarget;
+ function newGame() {currentTarget = origin; }
+ 	// currentTarget;
+// }
+
 
 currentTarget.addEventListener('click', showSymbol, false);
 
@@ -109,7 +121,9 @@ function showSymbol(event){
 }
 
 let openedCards = [],
- matchedCards =[];
+ matchedCards =[],
+ origin = currentTarget;
+ console.log(origin);
 
 function openCard(event){
 	
@@ -234,7 +248,7 @@ function moveCounter(event){
 
 	}
 }
-
+console.log(origin);
 
 // timer = ()=> {
 //         t = setTimeout(add, 1000);  
@@ -245,20 +259,22 @@ function gameComplete(event){
 	
 	if(event.target !== event.currentTarget){
 	 event.preventDefault();	
-	 	
+	 	console.log(origin);
 	 	if (matchedCards.length === 16) {
-
-	 		let gameDone = document.querySelector('.deck');
-	 	gameDone.innerText = "Good job! Congratulations!!! \n You completed the game after " +count+" moves \n Well done!!!";
+	 		console.log(origin);
+	 		// let gameDone = document.querySelector('.deck');
+	 	currentTarget.innerText = "Good job! Congratulations!!! \n You completed the game after " +count+" moves \n Well done!!!";
 	 	// gameDone.style ={alignContent:"center", alignItems:"center"}
-						
+			console.log(origin);			
 		}
 
 	}
 }
 
-
-
+function newCards(){
+	// cardsCover;
+for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
+}
 
 // function moveCounter1(event){
 	
@@ -318,6 +334,16 @@ for (var i = 0; i < allCards.length; i++) {
    count = -1;
    moveCounter(event);
    shuffle(cardsCover);
+   // let gameDone.innerHTML= document.querySelectorAll('.card');
+   // for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
+   //new addon to generate new dom tree
+   currentTarget.innerHTML =matchedCards;
+   newCards();
+
+   newBoard();
+console.log(origin);
+newGame();
+console.log(origin);
    // document.querySelector('.deck').remove(document.querySelectorAll('.card'))
    // document.querySelector('.deck').innerHTML =shuffle(cardsCover);
 }
