@@ -1,57 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
-// let origin = document.querySelector('.deck');
-// unendittedCards =document.querySelectorAll('.card');
-cardsCover = [...document.querySelectorAll('.card')];
-// cardsCover = [document.querySelectorAll('.card')];
-// cardsToPlay = document.querySelectorAll('.card>.fa');
-d = [...document.querySelectorAll('.card>.fa')];
-// cardsToPlay = document.querySelectorAll('.card>i');
+const cardDisplayBoard = document.querySelector('.deck'),
+	cards = document.querySelectorAll('.card'),
+	cardsArray = [...cards];
+let countDisplay = document.querySelector('.moves');
+let textDisplay = document.querySelector('.text');
+let cardsShuffled = shuffle(cardsArray);
+// calling of new card function
 newCards();
-// for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
-// const origin =  document.querySelector('.deck');
-// for (item of cardsToPlay){let cardsToPlay=[]; cardsToPlay = item; };
-// console.log (cardsCover);
-// shuffle(cardsCover);
 // u = shuffle(cardsToPlay);
 // I have two issues, line 212 (setTimeout)and  below is the other one this is not iterating as intended. at it is my programme wont run because of the issue but if i comment out this for loop. it will run but no reshuffle is done.
-u = shuffle(d);
-// for (i=0; i<= cardsCover.length; i++){(cardsCover[i].appendChild(u[i]));}
-function newBoard() {
-	for (i = 0; i < 1; i++) {
-		let currentTarget = document.querySelector('.deck');
-		currentTarget.children[0].appendChild(u[0]);
-		currentTarget.children[1].appendChild(u[1]);
-		currentTarget.children[2].appendChild(u[2]);
-		currentTarget.children[3].appendChild(u[3]);
-		currentTarget.children[4].appendChild(u[4]);
-		currentTarget.children[5].appendChild(u[5]);
-		currentTarget.children[6].appendChild(u[6]);
-		currentTarget.children[7].appendChild(u[7]);
-		currentTarget.children[8].appendChild(u[8]);
-		currentTarget.children[9].appendChild(u[9]);
-		currentTarget.children[10].appendChild(u[10]);
-		currentTarget.children[11].appendChild(u[11]);
-		currentTarget.children[12].appendChild(u[12]);
-		currentTarget.children[13].appendChild(u[13]);
-		currentTarget.children[14].appendChild(u[14]);
-		currentTarget.children[15].appendChild(u[15])
-	}
-}
-// for (i=0; i<= currentTarget.children.length; i++){cardsCover[i].appendChild(u[i]);}
-// for (i=0; i<= currentTarget.children.length; i++){currentTarget.children[i].appendChild(u[i]);}
-//d = [...document.querySelectorAll('.card>.fa')];
-// cardsToPlay = document.querySelectorAll('.card>i');
-// console.log (cardsCover);
-// document.querySelector('.deck').remove('card')
-// u = [i.fa.fa-diamond, i.fa.fa-paper-plane-o, i.fa.fa-anchor, i.fa.fa-bolt, i.fa.fa-cube, i.fa.fa-anchor, i.fa.fa-leaf, i.fa.fa-bicycle, i.fa.fa-diamond, i.fa.fa-bomb, i.fa.fa-leaf, i.fa.fa-bomb, i.fa.fa-bolt, i.fa.fa-bicycle, i.fa.fa-paper-plane-o, i.fa.fa-cube];
-// shuffle(cardsToPlay);
-// for (let i =0; i<cardPack; i++) {
-// if (document.getElementsByClassName('card')[i].className === "card"){
-// 	document.getElementsByClassName('card')[i].classList.add('match');
-// 	cardsToplay.push(/*event.target*/);
-// }
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -73,21 +32,16 @@ function shuffle(array) {
 	}
 	return array;
 }
-// document.body.getElementsByClassName('deck').addEventListener("click", function (e) {
-//         modal.removeClass("show");
-//         startGame();
-//     });
-// let target = document.querySelectorAll('.card');
-var count = 3;
+let count = 3;
 let currentTarget = document.querySelector('.deck');
-// const origin = currentTarget;
+// function defined to attached the shuffled cards to the board in order to make it ready for a new game
 function newGame() {
-	currentTarget = origin;
+	for (let i = 0; i <= cardsShuffled.length; i++) {
+		cardDisplayBoard.appendChild(cardsShuffled[i]);
+	}
 }
-// currentTarget;
-// }
 currentTarget.addEventListener('click', showSymbol, false);
-
+//function defined to show any clicked card on the board
 function showSymbol(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
@@ -104,7 +58,7 @@ let openedCards = [],
 	matchedCards = [],
 	origin = currentTarget;
 console.log(origin);
-
+//function defined to open any clicked card on the board
 function openCard(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
@@ -129,6 +83,7 @@ function openCard(event) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+//function defined to check if two card opened matches or not
 function cardMatchCheck(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
@@ -160,7 +115,7 @@ function cardMatchCheck(event) {
 		}
 	}
 }
-
+//function defined to restore opened cards to normal if they are not match
 function unmatchCardCheck(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
@@ -179,14 +134,16 @@ function unmatchCardCheck(event) {
 }
 // setTimeout(unmatchCardCheck, 1000, 'event');
 //the second issue is here, the timing is not functionin as I intend. This suppose to delay the flip but it is not.
-setTimeout(function() {
-	unmatchCardCheck;
-}, 1000, "event");
-
+// setTimeout(function() {
+// 	unmatchCardCheck;
+// }, 1000, "event");
+setTimeout(unmatchCardCheck, 100, "event");
+//function defined to operate the score board
 function moveCounter(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
-		let textDisplay = document.querySelector('.text');
+		// let textDisplay = document.querySelector('.text');
+		console.log(count);
 		count += 1;
 		// console.log(count);
 		if (count < 2) {
@@ -195,66 +152,45 @@ function moveCounter(event) {
 		} else {
 			textDisplay.innerText = " Moves";
 		}
-		let countDisplay = document.querySelector('.moves');
 		countDisplay.innerText = count;
 		// console.log(count);
 	}
 }
-console.log(origin);
 // timer = ()=> {
 //         t = setTimeout(add, 1000);  
 // }
+//function defined to tell the user game is completed
 function gameComplete(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
-		console.log(origin);
+		// console.log(origin);
 		if (matchedCards.length === 16) {
-			console.log(origin);
-			// let gameDone = document.querySelector('.deck');
-			currentTarget.innerText = "Good job! Congratulations!!! \n You completed the game after " + count + " moves \n Well done!!!";
-			// gameDone.style ={alignContent:"center", alignItems:"center"}
-			console.log(origin);
+			// console.log(origin);
+			swal({
+				title: "Good job! Congratulations!!!",
+				text: "You matched all the cards! \n by completed the game after " + count + " moves \n Well done!!!",
+				icon: "success",
+			});
+			newCards();
+			newGame();
+			count = -2;
+			moveCounter(event);
 		}
 	}
 }
-
+//function defined to generate new set of cards ready to be played
 function newCards() {
-	// cardsCover;
-	for (item of cardsCover) {
-		let cardsCover = [];
+	for (item of cards) {
+		let cards = [];
 		item.classList.remove('match', 'open', 'show');
-		cardsCover = item;
+		cards = item;
 	};
 }
-// function moveCounter1(event){
-// 	if(event.target !== event.currentTarget){
-// 	 event.preventDefault();	
-// 	 	count += count;
-// 	 	count++;
-// 		if (event.target.firstElementChild.className !== openedCards[0].firstElementChild.className){
-// 			// console.log( openedCards );
-// 			// console.log( matchedCards );
-// 			// 	event.target.classList.remove('show');
-// 			// 	event.target.classList.remove('open');
-// 			// 	openedCards[0].classList.remove('show');
-// 			// 	openedCards[0].classList.remove('open');
-// 			// 	openedCards = [];
-// 			// console.log( openedCards );
-// const starMove = document.querySelector('li');
-// const starMoveParent = document.querySelector('.stars');
-// // <li class="card"><i class="fa fa-cube"></i></li>
-// document.querySelector('.stars').children
-// for (var i = 0; i < starMoveParent.length; i++) {
-//    starMoveParent[i].remove('li');
-// }
-// 			}
-// 		}
-// 	}
-//reset function
+//reset function called
 const resetButton = document.querySelector('.restart');
 const allCards = currentTarget.children;
 resetButton.addEventListener('click', resetGame, false);
-
+//reset function
 function resetGame(event) {
 	event.preventDefault();
 	for (var i = 0; i < allCards.length; i++) {
@@ -263,18 +199,11 @@ function resetGame(event) {
 			matchedCards = [];
 		count = -1;
 		moveCounter(event);
-		shuffle(cardsCover);
-		// let gameDone.innerHTML= document.querySelectorAll('.card');
-		// for (item of cardsCover){let cardsCover=[]; item.classList.remove('match', 'open', 'show'); cardsCover = item; };
-		//new addon to generate new dom tree
-		currentTarget.innerHTML = matchedCards;
+		// shuffle(cardsCover);
 		newCards();
-		newBoard();
-		console.log(origin);
+		// console.log(origin);
 		newGame();
 		// console.log(origin);
-		// document.querySelector('.deck').remove(document.querySelectorAll('.card'))
-		// document.querySelector('.deck').innerHTML =shuffle(cardsCover);
 	}
 }
 /*
