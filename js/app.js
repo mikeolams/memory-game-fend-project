@@ -155,7 +155,8 @@ function gameComplete(event) {
 				text: "You matched all the cards! \n by completed the game after " + count + " moves \n Well done!!!",
 				icon: "success",
 			});
-			resetGame(event)
+			newCards();
+			newGame();
 		}
 	}
 }
