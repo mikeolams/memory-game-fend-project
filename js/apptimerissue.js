@@ -14,8 +14,6 @@ startBtn.addEventListener('click', gameCommence, false);
 
 // var tickCount = 0;
 
-let on=0;
-// if (minuteCount>=0 && tickCount>0){on =1; console.log(tickCount)}
 // calling of new card function
 function gameCommence(){swal("Please type your name here:", {
   content: "input",
@@ -23,10 +21,8 @@ function gameCommence(){swal("Please type your name here:", {
 .then((value) => {
   swal(`You are identify as: ${value}`);
 });
-on =1;
-// while (matchedCards.length<16) {gameTimer(event);}
-clock();
-// if (minuteCount>=0 && tickCount>0){on =1; console.log(tickCount)}
+
+gameTimer(event);
 }
 
 // function openNav() {
@@ -37,7 +33,7 @@ clock();
 //   cardDisplayBoard.style.width = "0";}
 
 
-// newCards();
+newCards();
 // u = shuffle(cardsToPlay);
 // I have two issues, line 212 (setTimeout)and  below is the other one this is not iterating as intended. at it is my programme wont run because of the issue but if i comment out this for loop. it will run but no reshuffle is done.
 /*
@@ -61,7 +57,7 @@ function shuffle(array) {
 	}
 	return array;
 }
-let count = 0;
+let count = 3;
 let currentTarget = document.querySelector('.deck');
 
  rating();
@@ -83,16 +79,12 @@ function showSymbol(event) {
 		// const clickTarget = event.target;
 		// console.log(clickTarget);	
 		if (event.target.className === "card") {
-			if(on ==1){
 			event.target.classList.add('show');
 			openCard(event);
-			}
 		}
 	}
 	// open(event);
 }
-
-
 let openedCards = [],
 	matchedCards = [];
 // 	origin = currentTarget;
@@ -224,16 +216,9 @@ function moveCounter(event) {
 
 // var count=document.getElementById('SecondsInput').value;
 // var counter=setInterval(gameTimer, 1000, "event"); //run it every 1 second
-// var tickCount = 0,
-// minuteCount = 0;
-
-var counter, tickCount = 0, minuteCount = 0;
-
-function clock(){
-	var counter=setInterval(gameTimer, 1000, "event"); //run it every 1 second
 var tickCount = 0,
 minuteCount = 0;
-}
+
 
 
 //function defined to tell the user game is completed
@@ -271,8 +256,7 @@ newElement = document.createElement('li');
 //reset function
 function resetGame(event) {
 	event.preventDefault();
-	if(on ==1){
-		warning();
+	warning();
 	for (var i = 0; i < allCards.length; i++) {
 		allCards[i].classList.remove('show', 'open', 'match');
 		openedCards = [],
@@ -288,7 +272,6 @@ function resetGame(event) {
 		// console.log(origin);
 		restoreRating();
 	}
-}
 }
 
 function warning(){
@@ -311,11 +294,13 @@ function warning(){
 
 }
 
+// gameTimer(event);
 
-
-//function defined to tell the user game is completed
-function gameTimer(){
-// event.preventDefault();
+// function defined to tell the user game is completed
+function gameTimer(event){
+// if (event.target !== event.currentTarget) {
+	// if (countDisplay.innerText>0) {
+		// event.preventDefault();
   tickCount+=1;
 
   if (tickCount==60){minuteCount +=1,
@@ -328,7 +313,7 @@ function gameTimer(){
      document.querySelector('.time').innerText = "Time Up!"
   }else if (matchedCards.length === 16){
   	window.alert("Well done!");
-  	// resetGame(event);
+  	// resetGame(event);;
   	newCards();
   	// newCards(); it should be resetCards
   	// newGame();
@@ -340,8 +325,8 @@ function gameTimer(){
   //Do code for showing the number of seconds here
   document.querySelector('.time').innerText = minuteCount +" minutes "+ tickCount + " seconds"
 rating();
+// }
 }
-
 
 
 let ratingStart = document.querySelector('.stars').children;
