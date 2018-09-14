@@ -126,13 +126,13 @@ function unmatchCardCheck(event) {
 function moveCounter(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
-		count += 1;
 		if (count < 2) {
 			textDisplay.innerText = " Move";
 		} else {
 			textDisplay.innerText = " Moves";
 		}
 		countDisplay.innerText = count;
+		count += 1;
 	}
 }
 //setting some parameters for the timer
@@ -155,9 +155,7 @@ function gameComplete(event) {
 				text: "You matched all the cards! \n by completed the game after " + count + " moves \n Well done!!!",
 				icon: "success",
 			});
-			newCards();
-			newGame();
-			on =0;
+			resetGame(event);
 		}
 	}
 }
@@ -178,18 +176,19 @@ newElement = document.createElement('li');
 function resetGame(event) {
 	event.preventDefault();
 	if (on == 1) {
-		warning();
+		if(matchedCards.length<16){warning();}
 		for (var i = 0; i < allCards.length; i++) {
 			allCards[i].classList.remove('show', 'open', 'match');
 			openedCards = [],
 				matchedCards = [];
 			minuteCount = 0;
 			tickCount = 0;
-			count = -1;
+			count = 0;
 			moveCounter(event);
 			newCards();
 			newGame();
 			restoreRating();
+			on =0;
 		}
 	}
 }
@@ -213,6 +212,7 @@ function warning() {
 }
 //function defined to tell the user game is completed
 function gameTimer() {
+	if (on ==1){
 	tickCount += 1;
 	if (tickCount == 60) {
 		minuteCount += 1,
@@ -234,6 +234,7 @@ function gameTimer() {
 	//Do code for showing the number of seconds here
 	document.querySelector('.time').innerText = minuteCount + " minutes " + tickCount + " seconds"
 	rating();
+}
 }
 //setting rating parameters
 let ratingStart = document.querySelector('.stars').children;
