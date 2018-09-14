@@ -9,9 +9,7 @@ let textDisplay = document.querySelector('.text');
 let cardsShuffled = shuffle(cardsArray);
 let startBtn = document.querySelector('.start');
 startBtn.addEventListener('click', gameCommence, false);
-
 let on = 0;
-
 // calling of new card function
 function gameCommence() {
 	swal("Please type your name here:", {
@@ -22,7 +20,6 @@ function gameCommence() {
 	on = 1;
 	clock();
 }
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -55,14 +52,12 @@ function newGame() {
 		}
 	}
 }
-
 // adding listerner to cards.
 currentTarget.addEventListener('click', showSymbol, false);
-
 //function defined to show any clicked card on the board
 function showSymbol(event) {
 	if (event.target !== event.currentTarget) {
-		event.preventDefault();	
+		event.preventDefault();
 		if (event.target.className === "card") {
 			if (on == 1) {
 				event.target.classList.add('show');
@@ -71,27 +66,24 @@ function showSymbol(event) {
 		}
 	}
 }
-
 //defining some parameters for the open and match cards
 let openedCards = [],
 	matchedCards = [];
-
 //function defined to open any clicked card on the board
 function openCard(event) {
 	if (event.target !== event.currentTarget) {
-		event.preventDefault();	
+		event.preventDefault();
 		if (event.target.className === "card show") {
 			event.target.classList.add('open');
 			openedCards.push(event.target);
-			cardMatchCheck(event);	
+			cardMatchCheck(event);
 		}
 	}
 }
-
 //function defined to check if two card opened matches or not
 function cardMatchCheck(event) {
 	if (event.target !== event.currentTarget) {
-		event.preventDefault();	
+		event.preventDefault();
 		if (openedCards.length > 1) {
 			if (event.target.className === "card show open") {
 				if (event.target.firstElementChild.className === openedCards[0].firstElementChild.className) {
@@ -112,7 +104,6 @@ function cardMatchCheck(event) {
 		}
 	}
 }
-
 //function defined to restore opened cards to normal if they are not match
 function unmatchCardCheck(event) {
 	if (event.target !== event.currentTarget) {
@@ -129,11 +120,8 @@ function unmatchCardCheck(event) {
 		}
 	}
 }
-
-
 // // setTimeout(unmatchCardCheck, 100, "event");
 // setInterval(unmatchCardCheck, 1000, "event");
-
 //function defined to operate the score board
 function moveCounter(event) {
 	if (event.target !== event.currentTarget) {
@@ -147,7 +135,6 @@ function moveCounter(event) {
 		countDisplay.innerText = count;
 	}
 }
-
 //setting some parameters for the timer
 var counter, tickCount = 0,
 	minuteCount = 0;
@@ -157,12 +144,10 @@ function clock() {
 	var tickCount = 0,
 		minuteCount = 0;
 }
-
 //function defined to tell the user game is completed
 function gameComplete(event) {
 	if (event.target !== event.currentTarget) {
 		event.preventDefault();
-		
 		if (matchedCards.length === 16) {
 			// modal implentation by sweet swal
 			swal({
@@ -174,7 +159,6 @@ function gameComplete(event) {
 		}
 	}
 }
-
 //function defined to generate new set of cards ready to be played
 function newCards() {
 	for (item of cards) {
@@ -183,15 +167,11 @@ function newCards() {
 		cards = item;
 	};
 }
-
-
 //reset function called and parameters set
 const resetButton = document.querySelector('.restart');
 const allCards = currentTarget.children;
-
 resetButton.addEventListener('click', resetGame, false);
 newElement = document.createElement('li');
-
 //reset function
 function resetGame(event) {
 	event.preventDefault();
@@ -211,7 +191,6 @@ function resetGame(event) {
 		}
 	}
 }
-
 // reset function call this warning before execution
 function warning() {
 	swal({
@@ -230,7 +209,6 @@ function warning() {
 		}
 	});
 }
-
 //function defined to tell the user game is completed
 function gameTimer() {
 	tickCount += 1;
@@ -251,16 +229,13 @@ function gameTimer() {
 	} else {
 		tickCount;
 	}
-
 	//Do code for showing the number of seconds here
 	document.querySelector('.time').innerText = minuteCount + " minutes " + tickCount + " seconds"
 	rating();
 }
-
 //setting rating parameters
 let ratingStart = document.querySelector('.stars').children;
 let noStarMessage = document.querySelector('.stars');
-
 //rating function to call for rating
 function rating() {
 	if (countDisplay.innerText > 14) {
@@ -281,7 +256,6 @@ function rating() {
 		console.log(minuteCount);
 	}
 }
-
 //function to restore default rating set
 function restoreRating() {
 	if (noStarMessage.childElementCount == 4) {
