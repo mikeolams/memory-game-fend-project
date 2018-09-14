@@ -157,6 +157,7 @@ function gameComplete(event) {
 			});
 			newCards();
 			newGame();
+			on =0;
 		}
 	}
 }
